@@ -10,10 +10,10 @@
     <script src="game.js"></script>
 </head>
 
-<body>
-    <h4 id="p1"></h4><span id="score1"></span>
+<body onload="loadPlayers()">
+    <h4 id="name1"></h4><span id="score1"></span>
     <br>
-    <h4 id="p2"></h4><span id="score2"></span>
+    <h4 id="name2"></h4><span id="score2"></span>
     <br>
     <div class="container">
         <h1>Adivinhe a Palavra</h1>
@@ -24,7 +24,7 @@
         <br>
         <br>
         <label>envie sua palavra <b style="color:red;">use uma palavra com 5 ou mais letras</b></label>
-        <input type="text" id="word" class="form-control" placeholder="escreva sua palavra">
+        <input type="password" id="word" class="form-control" placeholder="escreva sua palavra">
         <br>
         <button class="btn btn-success" style="width:15%" onclick="send()">enviar</button>
     </div>
