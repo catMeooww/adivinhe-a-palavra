@@ -1,3 +1,5 @@
+questionTurn = "player1";
+answerTurn = "player2";
 function loadPlayers() {
     player1Name = localStorage.getItem("player1");
     player2Name = localStorage.getItem("player2");
@@ -37,7 +39,7 @@ function send() {
     removeCharAt3 = word.replace(charAt3, "_");
     console.log(removeCharAt3);
 
-    question_word = "<h4 id='wordDisplay'> P. " + word.replace(charAt1, "_").replace(charAt2, "_").replace(charAt3, "_") + "</h4>";
+    question_word = "<h4 id='wordDisplay'> Palavra: " + word.replace(charAt1, "_").replace(charAt2, "_").replace(charAt3, "_") + "</h4>";
     inputBox = "<br>Resposta : <input type='text' id='inputCheckBox'>";
     checkButton = "<br><br><button class='btn btn-info' onclick='check()'>Checar</button>";
     row = question_word + inputBox + checkButton;
@@ -45,4 +47,33 @@ function send() {
     document.getElementById("output").innerHTML = row;
     document.getElementById("word").value = "";
 
+}
+function check() {
+    getAnswer = document.getElementById("inputCheckBox").value;
+    answer = getAnswer.toLowerCase();
+    console.log(getAnswer + "|" + answer);
+    if (answer == word) {
+        if (answerTurn == "player1") {
+            player1Score++;
+            document.getElementById("score1").innerHTML = player1Score;
+        } else {
+            player2Score++;
+            document.getElementById("score2").innerHTML = player2Score;
+        }
+        if (questionTurn == "player1") {
+            questionTurn = "player2";
+            document.getElementById("playerQ").innerHTML = "Turno de Pergunta - " + player2Name;
+        }else{
+            questionTurn = "player1";
+            document.getElementById("playerQ").innerHTML = "Turno de Pergunta - " + player1Name;
+        }
+        if(answerTurn == "player1"){
+            answerTurn = "player2";
+            document.getElementById("playerA").innerHTML = "Turno de Resposta - " + player2Name;
+        }else{
+            answerTurn = "player1";
+            document.getElementById("playerA").innerHTML = "Turno de Resposta - " + player1Name;
+        }
+        document.getElementById("output").innerHTML = "";
+    }
 }
